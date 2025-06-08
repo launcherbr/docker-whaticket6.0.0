@@ -1,6 +1,11 @@
 
 # 🚀 Dockerize a versão do **Whaticket 6.0.0**
 
+<hr>
+## 🖥️💿 Tutorial para instalação do Portainer 🖥️💿 ## <br>
+  
+ <br>[Link do Repositório](https://github.com/ramontrndd/portainer)
+
 ---
 
 ## ⚠️ **ATENÇÃO** ⚠️
