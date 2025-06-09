@@ -31,6 +31,7 @@ cd /opt
 ```bash
 git clone https://github.com/launcherbr/whaticketsaas.git whaticket
 ```
+** Será necessário informar o usuário e token do Github.
 
 ### 3. Acesse a pasta clonada:
 ```bash
