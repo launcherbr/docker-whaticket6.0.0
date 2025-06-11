@@ -4,6 +4,8 @@ services:
     depends_on:
       - postgres_whaticket
       - whaticket_redis
+    volumes:      
+      - whaticket_backend_data:/usr/src/app/
     environment:
       # POSTGRES
       - DB_DIALECT=postgres
@@ -65,8 +67,6 @@ services:
       - "traefik.http.middlewares.backend_body_size.buffering.maxRequestBodyBytes=20971520"
       - "traefik.http.services.whaticket_backend.loadbalancer.server.port=3000"
       - "traefik.http.routers.whaticket_backend.middlewares=cors_backend@docker,backend_headers@docker,backend_compress@docker,backend_body_size@docker"
-    volumes:
-      - ./backend/public/:/usr/src/app/public/
     restart: always
     networks:
       - whaticket
@@ -74,7 +74,9 @@ services:
   whaticket_frontend:
     image: whaticket-frontend:latest
     depends_on:
-      - whaticket_backend
+      - whaticket_backend      
+    volumes:      
+      - whaticket_frontend_data:/usr/src/app/
     environment:
       - REACT_APP_BACKEND_URL=https://api.suaempresa.com.br # Informe a URL pública do backend
       - REACT_APP_HOURS_CLOSE_TICKETS_AUTO=24
@@ -98,7 +100,7 @@ services:
       - whaticket
 
   postgres_whaticket:
-    image: postgres:13
+    image: postgres:16
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
@@ -124,5 +126,7 @@ networks:
     external: true
 
 volumes:
+  whaticket_backend_data:
+  whaticket_frontend_data:
   postgres-data:
   redis-data:
